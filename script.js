@@ -1,12 +1,12 @@
 var numGuess;
-const GENBUT = document.getElementById("GENBUT");
+const GENBUT = document.getElementById("genNumber");
 const HINT = document.getElementById("hint-box");
-const HINTTXT = HINT.innerText;
+
 if(localStorage.numHolder){
     numGuess = localStorage.numHolder;
 }
 
-GENBUT.addEventListener("click", function generateNum(){
+GENBUT.addEventListener("click", function(){
     let num=Math.floor(Math.random()*100);
     numGuess = num;
     localStorage.numHolder = numGuess;
@@ -18,7 +18,7 @@ function userInput(){
     var guess = formData[0].value;
 
     if (guess == numGuess){
-        HINTTXT = "YOU WIN!!!!!";
+        HINT.innerText = "YOU WIN!!!!!";
     }else{
         checkGuess();
     }
@@ -26,8 +26,8 @@ function userInput(){
 
 function checkGuess(){
     if(guess < numGuess){
-        HINTTXT = "Higher";
+        HINT.innerHTML = "Higher";
     }else{
-        HINTTXT = "Lower";
+        HINT.innerHTML = "Lower";
     }
 }
