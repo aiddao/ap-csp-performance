@@ -1,11 +1,12 @@
 var numGuess;
-const genNumber = document.getElementById("genNumber");
-
+const GENBUT = document.getElementById("GENBUT");
+const HINT = document.getElementById("hint-box");
+const HINTTXT = HINT.innerText;
 if(localStorage.numHolder){
     numGuess = localStorage.numHolder;
 }
 
-genNumber.addEventListener("click", function generateNum(){
+GENBUT.addEventListener("click", function generateNum(){
     let num=Math.floor(Math.random()*100);
     numGuess = num;
     localStorage.numHolder = numGuess;
@@ -14,15 +15,19 @@ genNumber.addEventListener("click", function generateNum(){
 function userInput(){
     event.preventDefault();
     let formData = $("form").serializeArray();
-    let guess = formData[0].value;
+    var guess = formData[0].value;
 
     if (guess == numGuess){
-        alert("YOU WIN!!!!!");
+        HINTTXT = "YOU WIN!!!!!";
     }else{
         checkGuess();
     }
 }
 
 function checkGuess(){
-    
+    if(guess < numGuess){
+        HINTTXT = "Higher";
+    }else{
+        HINTTXT = "Lower";
+    }
 }
