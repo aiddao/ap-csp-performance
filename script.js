@@ -30,29 +30,27 @@ function userInput(){
     }
 }
 
-//gives hints based on if the user's distance from the answer in percentages
+//checks how far off the guess is from the answer
+function checkCondition(a, b , c, d, e){
+    if(e <= RANGE * .10){
+        hint.innerText = a;
+    }else if (e > RANGE * .10 && e < RANGE * .25) {
+        hint.innerText = b;
+    }else if (e >= RANGE * .25 && e < RANGE * .50) {
+        hint.innerText = c;
+    }else{
+        hint.innerText = d;
+    }
+}
+
+//gives hint messages based on if the user is higher or lower than the answer
 function checkGuess(){
     if (guess < numGuess){
         let numOff = numGuess - guess;
-        if(numOff <= RANGE * .10){
-            hint.innerText = "Very close. A little higher!";
-        }else if (numOff > RANGE * .10 && numOff < RANGE * .25) {
-            hint.innerText = "You're getting there! Higher!"
-        }else if (numOff >= RANGE * .25 && numOff < RANGE * .50) {
-            hint.innerText = "Higher!";
-        }else{
-            hint.innerText = "You're quite a bit low...";
-        }
+        checkCondition("Very close. A little higher!", "You're getting there! Higher!", "Higher!", "You're quite a bit low...", numOff)
     }else{
         let numOff = guess - numGuess;
-        if(numOff <= RANGE * .10){
-            hint.innerText = "Very close. A little lower!";
-        }else if (numOff > RANGE * .10 && numOff < RANGE * .25) {
-            hint.innerText = "You're getting there! Lower!"
-        }else if (numOff >= RANGE * .25 && numOff < RANGE * .50) {
-            hint.innerText = "Lower!";
-        }else{
-            hint.innerText = "You're quite a bit high...";
-        }
+        checkCondition("Very close. A little lower!", "You're getting there! Lower!", "Lower!", "You're quite a bit high...", numOff)
     }
 }
+
