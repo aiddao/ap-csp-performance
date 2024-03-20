@@ -1,13 +1,15 @@
-var numGuess;
+const RANGE = 100;
 const GENBUT = document.getElementById("genNumber");
-const HINT = document.getElementById("hint-box");
+let hint = document.getElementsByClassName("hint-box")[0];
+let guess;
+let numGuess;
 
 if(localStorage.numHolder){
     numGuess = localStorage.numHolder;
 }
 
 GENBUT.addEventListener("click", function(){
-    let num=Math.floor(Math.random()*100);
+    let num=Math.floor(Math.random()* (RANGE - 1) + 1);
     numGuess = num;
     localStorage.numHolder = numGuess;
 });
@@ -15,10 +17,10 @@ GENBUT.addEventListener("click", function(){
 function userInput(){
     event.preventDefault();
     let formData = $("form").serializeArray();
-    var guess = formData[0].value;
+    guess = formData[0].value;
 
     if (guess == numGuess){
-        HINT.innerText = "YOU WIN!!!!!";
+        hint.innerText = "YOU WIN!!!!!";
     }else{
         checkGuess();
     }
@@ -26,8 +28,26 @@ function userInput(){
 
 function checkGuess(){
     if(guess < numGuess){
-        HINT.innerHTML = "Higher";
+        let numOff = numGuess - guess;
+        if(numOff <= RANGE * .10){
+            hint.innerText = "Very close. A little higher!";
+        }else if (numOff > RANGE * .10 && numOff < RANGE * .25) {
+            hint.innerText = "You're getting there! Higher!"
+        }else if (numOff > RANGE * .25 && numOff < RANGE * .5) {
+            hint.innerText = "Higher!";
+        }else{
+            hint.innerText = "You're quite a bit low...";
+        }
     }else{
-        HINT.innerHTML = "Lower";
+        let numOff = guess - numGuess;
+        if(numOff <= RANGE * .10){
+            hint.innerText = "Very close. A little lower!";
+        }else if (numOff > RANGE * .10 && numOff < RANGE * .25) {
+            hint.innerText = "You're getting there! Lower!"
+        }else if (numOff > RANGE * .25 && numOff < RANGE * .5) {
+            hint.innerText = "Lower!";
+        }else{
+            hint.innerText = "You're quite a bit high...";
+        }
     }
 }
