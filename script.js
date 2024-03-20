@@ -1,6 +1,6 @@
 const RANGE = 100;
 const GENBUT = document.getElementById("genNumber");
-let hint = document.getElementsByClassName("hint-box")[0];
+//let hintBox = document.getElementById("hint-box")[0];
 let guess;
 let numGuess;
 let score;
@@ -16,13 +16,21 @@ GENBUT.addEventListener("click", function(){
     numGuess = num;
     localStorage.numHolder = numGuess;
 });
-
+let hint;
 //turns the user's guess into a variable and checks if they won or not
 function userInput(){
     event.preventDefault();
     let formData = $("form").serializeArray();
+    if (formData[0].value == ""){
+        formData[0].value = parseInt(0);
+    }
+    console.log(formData[0].value);
     guess = parseInt(formData[0].value);
-
+    hint = document.createElement("div");
+    let hintBox = document.getElementById("hint-box");
+    let num = hintBox.childElementCount;
+    console.log(num);
+    hintBox.insertBefore(hint, hintBox.firstChild);
     if (guess == numGuess){
         hint.innerText = "YOU WIN!!!!!";
     }else{
