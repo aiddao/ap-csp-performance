@@ -2,3 +2,8 @@ div {
     width: 200px;
     border: 1px solid black;
 }
+
+#score-box {
+    position: relative;
+    left: 500px;
+}
