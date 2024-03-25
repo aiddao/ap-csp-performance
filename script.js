@@ -2,6 +2,7 @@ const RANGE = 100;
 const GENBUT = document.getElementById("genNumber");
 let guess;
 let numGuess;
+let scoreBox = document.getElementById("score-box");
 let score = 0;
 
 //if a number exists from a previous session, the number will remain the same
@@ -26,6 +27,7 @@ function userInput(){
         formData[0].value = 0;
     }
     console.log(num);
+    score = num;
     guess = parseInt(formData[0].value);
     hint = document.createElement("div");
     hintBox.insertBefore(hint, hintBox.firstChild);

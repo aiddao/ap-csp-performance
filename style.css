@@ -1,9 +1,21 @@
 div {
     width: 250px;
-    border: 1px solid black;
+    border: 1px solid white;
 }
 
 #score-box {
     position: relative;
+    
     left: 500px;
+    display:hidden;
+}
+#hint-box{
+    border:0px;
+}
+body {
+    color: rgb(253, 244, 191)
+    background-color: red;
+}
+h1 {
+    font-size: 200px;
 }
