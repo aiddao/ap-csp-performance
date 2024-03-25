@@ -32,31 +32,31 @@ function userInput(){
     if (guess == numGuess){
         hint.innerText = "YOU WIN!!!!!";
     }else{
-        checkGuess();
+        checkGuess(num);
     }
 }
 
 //checks how far off the guess is from the answer
-function checkCondition(a, b , c, d, e){
+function checkCondition(a, b , c, d, e, num){
     if(e <= RANGE * .10){
-        hint.innerText = a;
+        hint.innerText = num + ". "+ a;
     }else if (e > RANGE * .10 && e < RANGE * .25) {
-        hint.innerText = b;
+        hint.innerText = num + ". "+ b;
     }else if (e >= RANGE * .25 && e < RANGE * .50) {
-        hint.innerText = c;
+        hint.innerText = num + ". "+ c;
     }else{
-        hint.innerText = d;
+        hint.innerText = num + ". "+ d;
     }
 }
 
 //gives hint messages based on if the user is higher or lower than the answer
-function checkGuess(){
+function checkGuess(li){
     if (guess < numGuess){
         let numOff = numGuess - guess;
-        checkCondition("Very close. A little higher!", "You're getting there! Higher!", "Higher!", "You're quite a bit low...", numOff)
+        checkCondition("Very close. A little higher!", "You're getting there! Higher!", "Higher!", "You're quite a bit low...", numOff, li);
     }else{
         let numOff = guess - numGuess;
-        checkCondition("Very close. A little lower!", "You're getting there! Lower!", "Lower!", "You're quite a bit high...", numOff)
+        checkCondition("Very close. A little lower!", "You're getting there! Lower!", "Lower!", "You're quite a bit high...", numOff, li);
     }
 }
 
