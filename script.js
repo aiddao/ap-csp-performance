@@ -4,6 +4,13 @@ let guess;
 let numGuess;
 let scoreBox = document.getElementById("score-box");
 let score = 0;
+let hintzList = [];
+
+if(localStorage.hintz){
+
+}else{
+    hintzList = [];
+}
 
 //if a number exists from a previous session, the number will remain the same
 if(localStorage.numHolder){
@@ -21,13 +28,15 @@ let hint;
 function userInput(){
     event.preventDefault();
     let hintBox = document.getElementById("hint-box");
+    hintBox.setAttribute("class", "hintz");
+    let list = hintBox.childElementCount;
     let num = hintBox.childElementCount + 1;
+    score = num;
+    scoreBox.innerText = score;
     let formData = $("form").serializeArray();
     if (formData[0].value == ""){
         formData[0].value = 0;
     }
-    console.log(num);
-    score = num;
     guess = parseInt(formData[0].value);
     hint = document.createElement("div");
     hintBox.insertBefore(hint, hintBox.firstChild);
@@ -36,10 +45,12 @@ function userInput(){
     }else{
         checkGuess(num);
     }
+    hintzList.push(document.getElementsByClassName("hintz")[list].innerText);
+    localStorage.setItem("hintz", hintzList);
 }
 
 //checks how far off the guess is from the answer
-function checkCondition(a, b , c, d, e, num){
+function checkCondition(a, b, c, d, e, num){
     if(e <= RANGE * .10){
         hint.innerText = num + ". "+ a;
     }else if (e > RANGE * .10 && e < RANGE * .25) {
@@ -61,4 +72,3 @@ function checkGuess(li){
         checkCondition("Very close. A little lower!", "You're getting there! Lower!", "Lower!", "You're quite a bit high...", numOff, li);
     }
 }
-
