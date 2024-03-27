@@ -1,21 +1,27 @@
 div {
     width: 250px;
-    border: 1px solid white;
+    border: 1px solid black;
 }
 
 #score-box {
-    position: relative;
+    position: absolute;
     
     left: 500px;
+    height: 20px;
     display:hidden;
 }
 #hint-box{
     border:0px;
 }
 body {
-    color: rgb(253, 244, 191)
-    background-color: red;
+    color: rgb(253, 244, 191);
+    background-color: rgb(87, 7, 192);
 }
 h1 {
-    font-size: 200px;
+    font-size: 100px;
+    font-variant: small-caps;
+    font-style: oblique;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
+<!-- font-size: 50px;-->
+<!--font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;-->

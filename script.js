@@ -7,9 +7,10 @@ let score = 0;
 let hintzList = [];
 
 if(localStorage.hintz){
-
-}else{
-    hintzList = [];
+    hintzList = JSON.parse(localStorage.hintz);
+    for(i = 0, len = hintzList.length; i < len; i++){
+        document.getElementById("hint-box").insertBefore(hintzList[i], document.getElementById("hint-box").firstChild);
+    }
 }
 
 //if a number exists from a previous session, the number will remain the same
@@ -28,7 +29,6 @@ let hint;
 function userInput(){
     event.preventDefault();
     let hintBox = document.getElementById("hint-box");
-    hintBox.setAttribute("class", "hintz");
     let list = hintBox.childElementCount;
     let num = hintBox.childElementCount + 1;
     score = num;
@@ -42,13 +42,17 @@ function userInput(){
     hintBox.insertBefore(hint, hintBox.firstChild);
     if (guess == numGuess){
         hint.innerText = "YOU WIN!!!!!";
+        //clear localStorage.hintz
     }else{
         checkGuess(num);
     }
-    hintzList.push(document.getElementsByClassName("hintz")[list].innerText);
-    localStorage.setItem("hintz", hintzList);
+    if(localStorage.hintz){
+        hintzList = JSON.parse(localStorage.hintz);
+    }
+    let hintz = hintBox.firstElementChild;
+    hintzList.push(hintz.innerText);
+    localStorage.setItem("hintz", JSON.stringify(hintzList));
 }
-
 //checks how far off the guess is from the answer
 function checkCondition(a, b, c, d, e, num){
     if(e <= RANGE * .10){
