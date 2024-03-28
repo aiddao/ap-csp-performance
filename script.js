@@ -1,15 +1,18 @@
 const RANGE = 100;
 const GENBUT = document.getElementById("genNumber");
+const HINTBOX = document.getElementById("hint-box");
 let guess;
 let numGuess;
 let scoreBox = document.getElementById("score-box");
 let score = 0;
 let hintzList = [];
-
+let scoreList = [];
 if(localStorage.hintz){
     hintzList = JSON.parse(localStorage.hintz);
     for(i = 0, len = hintzList.length; i < len; i++){
-        document.getElementById("hint-box").insertBefore(hintzList[i], document.getElementById("hint-box").firstChild);
+        let div = document.createElement("div");
+        div.innerText = hintzList[i];
+        HINTBOX.insertBefore(div, HINTBOX.firstChild);
     }
 }
 
@@ -28,9 +31,7 @@ let hint;
 //turns the user's guess into a variable and checks if they won or not
 function userInput(){
     event.preventDefault();
-    let hintBox = document.getElementById("hint-box");
-    let list = hintBox.childElementCount;
-    let num = hintBox.childElementCount + 1;
+    let num = HINTBOX.childElementCount;
     score = num;
     scoreBox.innerText = score;
     let formData = $("form").serializeArray();
@@ -39,19 +40,24 @@ function userInput(){
     }
     guess = parseInt(formData[0].value);
     hint = document.createElement("div");
-    hintBox.insertBefore(hint, hintBox.firstChild);
+    HINTBOX.insertBefore(hint, HINTBOX.firstChild);
     if (guess == numGuess){
         hint.innerText = "YOU WIN!!!!!";
+        scoreList = JSON.parse(localStorage.scoreWin);
+        console.log(scoreList)
+        scoreList.push(score);
+        localStorage.setItem("scoreWin", JSON.stringify(scoreList));
         //clear localStorage.hintz
+
     }else{
         checkGuess(num);
+        if(localStorage.hintz){
+            hintzList = JSON.parse(localStorage.hintz);
+        }
+        let hintz = HINTBOX.firstElementChild;
+        hintzList.push(hintz.innerText);
+        localStorage.setItem("hintz", JSON.stringify(hintzList));
     }
-    if(localStorage.hintz){
-        hintzList = JSON.parse(localStorage.hintz);
-    }
-    let hintz = hintBox.firstElementChild;
-    hintzList.push(hintz.innerText);
-    localStorage.setItem("hintz", JSON.stringify(hintzList));
 }
 //checks how far off the guess is from the answer
 function checkCondition(a, b, c, d, e, num){
