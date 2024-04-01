@@ -15,6 +15,13 @@ if(localStorage.hintz){
         HINTBOX.insertBefore(div, HINTBOX.firstChild);
     }
 }
+if(localStorage.scorez){
+    score = JSON.parse(localStorage.scorez);
+    scoreBox.innerHTML = score;
+}
+if(localStorage.scoreWin){
+    scoreList = JSON.parse(localStorage.scoreWin);
+}
 
 //if a number exists from a previous session, the number will remain the same
 if(localStorage.numHolder){
@@ -34,20 +41,23 @@ function userInput(){
     let num = HINTBOX.childElementCount;
     score = num;
     scoreBox.innerText = score;
+    localStorage.setItem("scorez", JSON.stringify(score));
     let formData = $("form").serializeArray();
     if (formData[0].value == ""){
         formData[0].value = 0;
     }
     guess = parseInt(formData[0].value);
     hint = document.createElement("div");
+    hint.setAttribute("style", "color")
     HINTBOX.insertBefore(hint, HINTBOX.firstChild);
     if (guess == numGuess){
         hint.innerText = "YOU WIN!!!!!";
-        scoreList = JSON.parse(localStorage.scoreWin);
-        console.log(scoreList)
         scoreList.push(score);
         localStorage.setItem("scoreWin", JSON.stringify(scoreList));
         //clear localStorage.hintz
+        localStorage.clear("hintz");
+        localStorage.clear("numHolder");
+        localStorage.clear("scorez");
 
     }else{
         checkGuess(num);
