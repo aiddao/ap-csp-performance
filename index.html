@@ -8,8 +8,12 @@
 
 <body>
 <h1 class = "title">Number Guessr</h1>
+<div id = "high-score-box"> High Score:
+  <div id = "high-score">
+  </div>
+</div>
 
-<div id = "score-box"></div>
+<div id = "score-box" placeholder = "Current Score">0</div>
 
 <!--button generates random number-->
 <button id = "genNumber">Generate Number</button>
@@ -21,8 +25,9 @@
 </form>
 
 <!--displays the hints-->
-<div id = "hint-box">
-  <div></div>
+<div id = "another-box">Hints:</div>
+<div id = "hint-box"> 
+  <div id="child"></div>
 </div>
 
   <script src="script.js"></script>

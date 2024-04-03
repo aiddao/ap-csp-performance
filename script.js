@@ -6,7 +6,7 @@ let numGuess;
 let scoreBox = document.getElementById("score-box");
 let score = 0;
 let hintzList = [];
-let scoreList = [];
+let scoreList;
 if(localStorage.hintz){
     hintzList = JSON.parse(localStorage.hintz);
     for(i = 0, len = hintzList.length; i < len; i++){
@@ -52,13 +52,11 @@ function userInput(){
     HINTBOX.insertBefore(hint, HINTBOX.firstChild);
     if (guess == numGuess){
         hint.innerText = "YOU WIN!!!!!";
-        scoreList.push(score);
-        localStorage.setItem("scoreWin", JSON.stringify(scoreList));
-        //clear localStorage.hintz
-        localStorage.clear("hintz");
-        localStorage.clear("numHolder");
-        localStorage.clear("scorez");
-
+        if(scoreList < score){
+            scoreList = score;
+            localStorage.setItem("scoreWin", JSON.stringify(scoreList));
+        }
+        localStorage.removeItem("hintz","numHolder");
     }else{
         checkGuess(num);
         if(localStorage.hintz){

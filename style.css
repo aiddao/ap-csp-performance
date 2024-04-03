@@ -1,21 +1,45 @@
 div {
+    position: relative;
     width: 250px;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
 }
 
 #score-box {
     position: absolute;
-    
-    left: 500px;
+    top: 290px;
+    left: 1200px;
     height: 20px;
     display:hidden;
 }
+#high-score-box {
+    font-weight: bold;
+    position: absolute;
+    left: 1200px;
+    height: 20px;
+    display:hidden;
+}
+#high-score {
+    top: 2px;
+    left: -1px;
+    height: 20px;
+}
+#another-box{
+    font-family:arial;
+    left: 450px;
+    top: -35px;
+    font-size: 20px;
+    font-weight: bold;
+    /*background-color: ;*/
+}
 #hint-box{
     border:0px;
+    top: -35px;
+    left: 450px;
 }
 body {
-    color: rgb(253, 244, 191);
-    background-color: rgb(87, 7, 192);
+    /*color: lemonChiffon;
+    background-color: rgb(47, 11, 100);*/ 
+    text-align: center;
 }
 h1 {
     font-size: 100px;
@@ -23,5 +47,5 @@ h1 {
     font-style: oblique;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-<!-- font-size: 50px;-->
-<!--font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;-->
+#child{
+    border: 0px solid black;
