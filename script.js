@@ -8,7 +8,7 @@ let high = document.getElementById("high-score");
 let score = 0;
 let hintzList = [];
 let scoreList;
-let highScore = 0;
+let highScore = "";
 if(localStorage.hintz){
     hintzList = JSON.parse(localStorage.hintz);
     for(i = 0, len = hintzList.length; i < len; i++){
@@ -64,7 +64,11 @@ function userInput(){
             localStorage.setItem("scoreWin", JSON.stringify(scoreList));
         }
         localStorage.removeItem("hintz","numHolder");
-        if(highScore < score){
+        if(highScore == ""){
+            highScore = 0;
+            localStorage.setItem("highScore", JSON.stringify(score));
+            high.innerText = score;
+        }else if(highScore > score){
             localStorage.setItem("highScore", JSON.stringify(score));
             high.innerText = score;
         }
