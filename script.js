@@ -4,9 +4,11 @@ const HINTBOX = document.getElementById("hint-box");
 let guess;
 let numGuess;
 let scoreBox = document.getElementById("score-box");
+let high = document.getElementById("high-score");
 let score = 0;
 let hintzList = [];
 let scoreList;
+let highScore = 0;
 if(localStorage.hintz){
     hintzList = JSON.parse(localStorage.hintz);
     for(i = 0, len = hintzList.length; i < len; i++){
@@ -21,6 +23,11 @@ if(localStorage.scorez){
 }
 if(localStorage.scoreWin){
     scoreList = JSON.parse(localStorage.scoreWin);
+}
+
+if(localStorage.highScore){
+    highScore = parseInt(JSON.parse(localStorage.highScore));
+    high.innerText = highScore;
 }
 
 //if a number exists from a previous session, the number will remain the same
@@ -57,7 +64,12 @@ function userInput(){
             localStorage.setItem("scoreWin", JSON.stringify(scoreList));
         }
         localStorage.removeItem("hintz","numHolder");
-        localStorage.setItem("highScore")
+        if(highScore < score){
+            localStorage.setItem("highScore", JSON.stringify(score));
+            highScore = score;
+            high.innerText = highScore;
+        }
+        
     }else{
         checkGuess(num);
         if(localStorage.hintz){
