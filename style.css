@@ -5,47 +5,45 @@ div {
 }
 
 #score-box {
-    position: absolute;
-    top: 290px;
-    left: 1200px;
     height: 20px;
     display:hidden;
 }
-#high-score-box {
+#scores-box {
     font-weight: bold;
-    position: absolute;
-    left: 1200px;
-    height: 20px;
-    display:hidden;
+    left:70vw;
+    top:-6vh;
 }
 #high-score {
-    top: 2px;
-    left: -1px;
     height: 20px;
 }
 #another-box{
     font-family:arial;
-    left: 450px;
-    top: -35px;
-    font-size: 20px;
-    font-weight: bold;
-    /*background-color: ;*/
+    left:10vw;
+    top:2vh;
 }
-#hint-box{
+#hint-box {
     border:0px;
-    top: -35px;
-    left: 450px;
 }
+
+#game {
+    left: 40vw;
+    border: 0px;
+}
+
 body {
-    /*color: lemonChiffon;
-    background-color: rgb(47, 11, 100);*/ 
+    color: lemonChiffon;
+    background-color: rgb(47, 11, 130); 
     text-align: center;
+    display:inline-block;
 }
-h1 {
+
+.title {
     font-size: 100px;
     font-variant: small-caps;
     font-style: oblique;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
 #child{
     border: 0px solid black;
+}

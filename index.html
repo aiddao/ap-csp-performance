@@ -7,29 +7,32 @@
 </head>
 
 <body>
-<h1 class = "title">Number Guessr</h1>
-<div id = "high-score-box"> High Score:
-  <div id = "high-score">
+  <h1 class = "title">Number Guessr</h1>
+
+  <!--displays the hints-->
+  <div id = "another-box">Hints:
+    <div id = "hint-box"> 
+      <div id="child"></div>
+    </div>
   </div>
-</div>
 
-<div id = "score-box" placeholder = "Current Score">0</div>
+  <div id = "game">
+    <!--button generates random number-->
+    <button id = "genNumber">Generate Number</button>
 
-<!--button generates random number-->
-<button id = "genNumber">Generate Number</button>
+    <!--input from user and checks if equals the-->
+    <form onsubmit = "userInput()">
+        <input type="text" name = "value" placeholder = "Your Guess Here" autocomplete="off">
+        <input type="submit">
+    </form>
+  </div>
 
-<!--input from user and checks if equals the-->
-<form onsubmit = "userInput()">
-    <input type="text" name = "value" placeholder = "Your Guess Here" autocomplete="off">
-    <input type="submit">
-</form>
-
-<!--displays the hints-->
-<div id = "another-box">Hints:</div>
-<div id = "hint-box"> 
-  <div id="child"></div>
-</div>
-
+  <!--displays the scores-->
+  <div id = "scores-box"> High Score:
+    <div id = "high-score"></div>
+    <div id = "score-box">0</div>
+  </div>
+  
   <script src="script.js"></script>
 </body>
 
