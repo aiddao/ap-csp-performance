@@ -66,8 +66,7 @@ function userInput(){
         localStorage.removeItem("hintz","numHolder");
         if(highScore < score){
             localStorage.setItem("highScore", JSON.stringify(score));
-            highScore = score;
-            high.innerText = highScore;
+            high.innerText = score;
         }
         
     }else{
