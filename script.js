@@ -57,6 +57,7 @@ function userInput(){
             localStorage.setItem("scoreWin", JSON.stringify(scoreList));
         }
         localStorage.removeItem("hintz","numHolder");
+        localStorage.setItem("highScore")
     }else{
         checkGuess(num);
         if(localStorage.hintz){
