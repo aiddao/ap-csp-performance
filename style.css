@@ -4,37 +4,38 @@ div {
     border: 1px solid rgb(0, 0, 0);
 }
 
+#container {
+    display: flex;
+    left: 25%;
+    width: 50%;
+    border: 0px;
+}
+
 #score-box {
     height: 20px;
-    display:hidden;
+    border: 0px;
 }
 #scores-box {
     font-weight: bold;
-    left:70vw;
-    top:-4.5vh;
+    align-self: start;
 }
 #high-score {
     height: 20px;
 }
 #another-box{
     font-family:arial;
-    left:10vw;
-    top:2vh;
 }
 #hint-box {
     border:0px;
 }
 
 #game {
-    left: 40vw;
     border: 0px;
 }
-
 body {
     color: lemonChiffon;
     background-color: rgb(47, 11, 130); 
     text-align: center;
-    display:inline-block;
 }
 
 .title {
@@ -45,5 +46,5 @@ body {
 }
 
 #child{
-    border: 0px solid black;
+    border: 0px;
 }

@@ -5,7 +5,6 @@ let guess;
 let numGuess;
 let scoreBox = document.getElementById("score-box");
 let high = document.getElementById("high-score");
-let score = 0;
 let hintzList = [];
 let scoreList;
 let highScore = "";
@@ -19,7 +18,7 @@ if(localStorage.hintz){
 }
 if(localStorage.scorez){
     score = JSON.parse(localStorage.scorez);
-    scoreBox.innerHTML = score;
+    scoreBox.innerHTML = "Previous Score: " + score;
 }
 if(localStorage.scoreWin){
     scoreList = JSON.parse(localStorage.scoreWin);
@@ -46,9 +45,8 @@ let hint;
 function userInput(){
     event.preventDefault();
     let num = HINTBOX.childElementCount;
-    score = num;
-    scoreBox.innerText = score;
-    localStorage.setItem("scorez", JSON.stringify(score));
+    scoreBox.innerText = "Current Score: " + num;
+    localStorage.setItem("scorez", JSON.stringify(num));
     let formData = $("form").serializeArray();
     if (formData[0].value == ""){
         formData[0].value = 0;
@@ -57,7 +55,7 @@ function userInput(){
     hint = document.createElement("div");
     hint.setAttribute("style", "color")
     HINTBOX.insertBefore(hint, HINTBOX.firstChild);
-    winCondition(guess, numGuess, scoreList, score, num);
+    winCondition(guess, numGuess, scoreList, num);
 }
 //checks how far off the guess is from the answer
 function checkCondition(a, b, c, d, e, num){
@@ -84,25 +82,27 @@ function checkGuess(li){
 }
 
 //Put in parameters
-function winCondition(a, b, c, d, e){
-    if (guess == numGuess){
-        hint.innerText = "YOU WIN!!!!!";
-        if(scoreList < score){
-            scoreList = score;
-            localStorage.setItem("scoreWin", JSON.stringify(scoreList));
+function winCondition(a, b, c, d){
+    if (a == b){
+        //hint.innerText = "YOU WIN!!!!!";
+        alert("YOU WIN!!!");
+        if(c < d){
+            d --;
+            c = d;
+            localStorage.setItem("scoreWin", JSON.stringify(c));
         }
         localStorage.removeItem("hintz","numHolder");
         if(highScore == ""){
             highScore = 0;
-            localStorage.setItem("highScore", JSON.stringify(score));
-            high.innerText = score;
-        }else if(highScore > score){
-            localStorage.setItem("highScore", JSON.stringify(score));
-            high.innerText = score;
+            localStorage.setItem("highScore", JSON.stringify(d));
+            high.innerText = d;
+        }else if(highScore > d){
+            localStorage.setItem("highScore", JSON.stringify(d));
+            high.innerText = d;
         }
-        
+        location.reload();
     }else{
-        checkGuess(num);
+        checkGuess(d);
         if(localStorage.hintz){
             hintzList = JSON.parse(localStorage.hintz);
         }
