@@ -8,6 +8,8 @@ let high = document.getElementById("high-score");
 let hintzList = [];
 let scoreList;
 let highScore = "";
+let hint;
+
 if(localStorage.hintz){
     hintzList = JSON.parse(localStorage.hintz);
     for(i = 0, len = hintzList.length; i < len; i++){
@@ -40,7 +42,7 @@ GENBUT.addEventListener("click", function(){
     numGuess = num;
     localStorage.numHolder = numGuess;
 });
-let hint;
+
 //turns the user's guess into a variable and checks if they won or not
 function userInput(){
     event.preventDefault();
@@ -72,11 +74,10 @@ function checkCondition(a, b, c, d, e, num){
 
 //gives hint messages based on if the user is higher or lower than the answer
 function checkGuess(li){
+    let numOff = Math.abs(numGuess - guess);
     if (guess < numGuess){
-        let numOff = numGuess - guess;
         checkCondition("Very close. A little higher!", "You're getting there! Higher!", "Higher!", "You're quite a bit low...", numOff, li);
     }else{
-        let numOff = guess - numGuess;
         checkCondition("Very close. A little lower!", "You're getting there! Lower!", "Lower!", "You're quite a bit high...", numOff, li);
     }
 }
