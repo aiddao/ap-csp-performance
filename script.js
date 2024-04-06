@@ -41,6 +41,10 @@ GENBUT.addEventListener("click", function(){
     let num=Math.floor(Math.random()* (RANGE - 1) + 1);
     numGuess = num;
     localStorage.numHolder = numGuess;
+    //let div = document.createElement("div");
+    //div.setAttribute("class", "hintDiv");
+    //div.innerText = "Number generated";
+    //HINTBOX.insertBefore(div, HINTBOX.firstChild);
 });
 
 //turns the user's guess into a variable and checks if they won or not
@@ -55,7 +59,7 @@ function userInput(){
     }
     guess = parseInt(formData[0].value);
     hint = document.createElement("div");
-    hint.setAttribute("style", "color")
+    hint.setAttribute("style", "width:100%; word-wrap: break-word")
     HINTBOX.insertBefore(hint, HINTBOX.firstChild);
     winCondition(guess, numGuess, scoreList, num);
 }
@@ -82,10 +86,8 @@ function checkGuess(li){
     }
 }
 
-//Put in parameters
 function winCondition(a, b, c, d){
     if (a == b){
-        //hint.innerText = "YOU WIN!!!!!";
         alert("YOU WIN!!!");
         if(c < d){
             d --;

@@ -14,23 +14,30 @@ div {
 #score-box {
     height: 20px;
     border: 0px;
+    width:100%;
+    word-wrap: break-word;
 }
 #scores-box {
     font-weight: bold;
     align-self: start;
+    width:30%;
 }
 #high-score {
     height: 20px;
+    width:100%;
+}
+#game {
+    border: 0px;
+    width:30%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 #another-box{
     font-family:arial;
+    width:30%;
 }
 #hint-box {
     border:0px;
-}
-
-#game {
-    border: 0px;
 }
 body {
     color: lemonChiffon;
@@ -47,4 +54,7 @@ body {
 
 #child{
     border: 0px;
+}
+#input{
+    width: 100%;
 }
