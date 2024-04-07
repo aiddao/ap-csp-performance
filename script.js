@@ -52,10 +52,14 @@ function customize(){
 
 //generates number from 1 to the given range
 GENBUT.addEventListener("click", function(){
+    if(localStorage.numHolder){
+        alert("There is already a generated number!!");
+    } else {
     let num=Math.floor(Math.random()* (RANGE - 1) + 1);
     numGuess = num;
     localStorage.numHolder = numGuess;
     alert("Number Generated");
+    }
 });
 
 //turns the user's guess into a variable and checks if they won or not
@@ -108,7 +112,8 @@ function winCondition(a, b, c, d){
             c = d;
             localStorage.setItem("scoreWin", JSON.stringify(c));
         }
-        localStorage.removeItem("hintz","numHolder");
+        localStorage.removeItem("hintz");
+        localStorage.removeItem("numHolder");
         if(highScore == ""){
             highScore = 0;
             localStorage.setItem("highScore", JSON.stringify(d));
