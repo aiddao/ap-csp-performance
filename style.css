@@ -2,6 +2,8 @@ div {
     position: relative;
     width: 250px;
     border: 1px solid rgb(0, 0, 0);
+    word-wrap: break-word;
+    width: 100%;
 }
 
 #container {

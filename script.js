@@ -59,7 +59,6 @@ function userInput(){
     }
     guess = parseInt(formData[0].value);
     hint = document.createElement("div");
-    hint.setAttribute("style", "width:100%; word-wrap: break-word")
     HINTBOX.insertBefore(hint, HINTBOX.firstChild);
     winCondition(guess, numGuess, scoreList, num);
 }
