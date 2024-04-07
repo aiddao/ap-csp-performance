@@ -41,8 +41,8 @@ div {
     border:0px;
 }
 body {
-    color: lemonChiffon;
-    background-color: purple/*rgb(47, 11, 130)*/; 
+    color: black;
+    background-color: rgb(200, 200, 200); 
     text-align: center;
 }
 
@@ -53,10 +53,15 @@ body {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-#child{
+#child {
     border: 0px;
 }
 
 #input {
     width: 100%;
+}
+
+#color-picker {
+    left: 90%;
+    width:120px;
 }

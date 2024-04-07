@@ -7,6 +7,19 @@
 </head>
 
 <body>
+  <div id = "color-picker">
+    <label>Color Picker</label>
+    <form onsubmit = customize()>
+      <label>Background Color</label>
+      <input type="color" name="backgroundColor" value="#000000">
+      <br>
+      <label>Font Color</label>
+      <input type="color" name="color" value="#000000">
+      <br>
+      <input type = "submit">
+    </form> 
+  </div>
+
   <h1 class = "title">Number Guessr</h1>
 
   <div id = "container">
@@ -34,8 +47,7 @@
       <div id = "score-box">0</div>
     </div>
   </div>
-
-  
+    
   <script src="script.js"></script>
 </body>
 
