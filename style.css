@@ -15,7 +15,6 @@ div {
     height: 20px;
     border: 0px;
     width:100%;
-    word-wrap: break-word;
 }
 #scores-box {
     font-weight: bold;
@@ -41,7 +40,7 @@ div {
 }
 body {
     color: lemonChiffon;
-    background-color: rgb(47, 11, 130); 
+    background-color: purple/*rgb(47, 11, 130)*/; 
     text-align: center;
 }
 
@@ -55,6 +54,7 @@ body {
 #child{
     border: 0px;
 }
-#input{
+
+#input {
     width: 100%;
 }

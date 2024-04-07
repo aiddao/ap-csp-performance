@@ -41,10 +41,10 @@ GENBUT.addEventListener("click", function(){
     let num=Math.floor(Math.random()* (RANGE - 1) + 1);
     numGuess = num;
     localStorage.numHolder = numGuess;
-    //let div = document.createElement("div");
-    //div.setAttribute("class", "hintDiv");
-    //div.innerText = "Number generated";
-    //HINTBOX.insertBefore(div, HINTBOX.firstChild);
+    let div = document.createElement("div");
+    div.setAttribute("class", "hintDiv");
+    div.innerText = "Number generated";
+    HINTBOX.insertBefore(div, HINTBOX.firstChild);
 });
 
 //turns the user's guess into a variable and checks if they won or not
