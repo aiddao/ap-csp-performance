@@ -34,8 +34,8 @@ div {
     padding-right: 10px;
 }
 #another-box{
-    font-family:arial;
     width:30%;
+    font-weight: bold;
 }
 #hint-box {
     border:0px;
@@ -44,14 +44,14 @@ body {
     color: black;
     background-color: #c8c8c8; 
     text-align: center;
-    font-family:georgia;
+    font-family:arial;
 }
 
 .title {
     font-size: 100px;
     font-variant: small-caps;
     font-style: oblique;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia;
 }
 
 #child {
@@ -68,8 +68,6 @@ body {
     /*position:absolute;*/
 }
 #description{
-    /*position:absolute;*/
     border:0px;
-    /*top:20%;*/
-    font-size:;
+    font-size:20px;
 }
