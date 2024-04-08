@@ -44,6 +44,7 @@ body {
     color: black;
     background-color: #c8c8c8; 
     text-align: center;
+    font-family:georgia;
 }
 
 .title {
@@ -62,6 +63,13 @@ body {
 }
 
 #color-picker {
-    left: 90%;
-    width:120px;
+    left: 89%;
+    width:10%;
+    /*position:absolute;*/
+}
+#description{
+    /*position:absolute;*/
+    border:0px;
+    /*top:20%;*/
+    font-size:;
 }

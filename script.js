@@ -47,7 +47,6 @@ function customize(){
     let formData = $("form").serializeArray();
     document.body.setAttribute("style", "background-color:" + formData[0].value + "; color:" + formData[1].value + ";");
     localStorage.setItem("color", JSON.stringify(formData));
-    console.log(formData);
 }
 
 //generates number from 1 to the given range
@@ -106,9 +105,8 @@ function checkGuess(li){
 
 function winCondition(a, b, c, d){
     if (a == b){
-        alert("YOU WIN!!!");
+        alert("YOU WIN!!! Score: " + d);
         if(c < d){
-            d --;
             c = d;
             localStorage.setItem("scoreWin", JSON.stringify(c));
         }
@@ -125,9 +123,6 @@ function winCondition(a, b, c, d){
         location.reload();
     }else{
         checkGuess(d);
-        if(localStorage.hintz){
-            hintzList = JSON.parse(localStorage.hintz);
-        }
         let hintz = HINTBOX.firstElementChild;
         hintzList.push(hintz.innerText);
         localStorage.setItem("hintz", JSON.stringify(hintzList));
