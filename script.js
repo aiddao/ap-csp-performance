@@ -81,25 +81,25 @@ function userInput(){
 }
 }
 //checks how far off the guess is from the answer
-function checkCondition(a, b, c, d, e, num){
+function checkCondition(a, b, c, d, e, num, g){
     if(e <= RANGE * .10){
-        hint.innerText = num + ". "+ a;
+        hint.innerText = num + ". "+ a + "["+g+"]";
     }else if (e > RANGE * .10 && e < RANGE * .25) {
-        hint.innerText = num + ". "+ b;
+        hint.innerText = num + ". "+ b + "["+g+"]";
     }else if (e >= RANGE * .25 && e < RANGE * .50) {
-        hint.innerText = num + ". "+ c;
+        hint.innerText = num + ". "+ c + "["+g+"]";
     }else{
-        hint.innerText = num + ". "+ d;
+        hint.innerText = num + ". "+ d + "["+g+"]";
     }
 }
 
 //gives hint messages based on if the user is higher or lower than the answer
-function checkGuess(li){
+function checkGuess(li, guess){
     let numOff = Math.abs(numGuess - guess);
     if (guess < numGuess){
-        checkCondition("Very close. A little higher!", "You're getting there! Higher!", "Higher!", "You're quite a bit low...", numOff, li);
+        checkCondition("Very close. A little higher! ", "You're getting there! Higher! ", "Higher! ", "You're quite a bit low ", numOff, li, guess);
     }else{
-        checkCondition("Very close. A little lower!", "You're getting there! Lower!", "Lower!", "You're quite a bit high...", numOff, li);
+        checkCondition("Very close. A little lower! ", "You're getting there! Lower! ", "Lower! ", "You're quite a bit high ", numOff, li, guess);
     }
 }
 
@@ -122,7 +122,7 @@ function winCondition(a, b, c, d){
         }
         location.reload();
     }else{
-        checkGuess(d);
+        checkGuess(d, a);
         let hintz = HINTBOX.firstElementChild;
         hintzList.push(hintz.innerText);
         localStorage.setItem("hintz", JSON.stringify(hintzList));
