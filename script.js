@@ -1,4 +1,4 @@
-const RANGE = 10000000000000000000000000000000000000000000000000;
+const RANGE = 100;
 const GENBUT = document.getElementById("genNumber");
 const HINTBOX = document.getElementById("hint-box");
 let guess;
@@ -9,6 +9,7 @@ let hintzList = [];
 let scoreList;
 let highScore = "";
 let hint;
+let time;
 
 if(localStorage.hintz){
     hintzList = JSON.parse(localStorage.hintz);
@@ -62,6 +63,7 @@ GENBUT.addEventListener("click", function(){
     localStorage.numHolder = numGuess;
     alert("Number Generated");
     }
+
 });
 
 //turns the user's guess into a variable and checks if they won or not
@@ -108,7 +110,7 @@ function checkGuess(li, guess){
 
 function winCondition(a, b, c, d){
     if (a == b){
-        alert("YOU WIN!!! Score: " + d);
+        alert("YOU WIN!!! Answer: "+numGuess+" | Score: " + d);
         if(c < d){
             c = d;
             localStorage.setItem("scoreWin", JSON.stringify(c));
