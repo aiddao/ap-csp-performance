@@ -1,4 +1,4 @@
-const RANGE = 100;
+const RANGE = 10000000000000000000000000000000000000000000000000;
 const GENBUT = document.getElementById("genNumber");
 const HINTBOX = document.getElementById("hint-box");
 let guess;
@@ -48,6 +48,9 @@ function customize(){
     document.body.setAttribute("style", "background-color:" + formData[0].value + "; color:" + formData[1].value + ";");
     localStorage.setItem("color", JSON.stringify(formData));
 }
+
+let desc = document.getElementById("descriptor");
+desc.innerText = RANGE;
 
 //generates number from 1 to the given range
 GENBUT.addEventListener("click", function(){
