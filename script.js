@@ -14,6 +14,7 @@ let hint;
 let time;
 let timeScore = 0;
 
+
 if(localStorage.hintz){
     hintzList = JSON.parse(localStorage.hintz);
     for(i = 0, len = hintzList.length; i < len; i++){
@@ -72,17 +73,22 @@ GENBUT.addEventListener("click", function(){
 function userInput(){
     event.preventDefault();
     if(localStorage.numHolder){
-    num = HINTBOX.childElementCount;
-    scoreBox.innerText = "Current Score: " + num;
-    localStorage.setItem("scorez", JSON.stringify(num));
     let formData = $("form").serializeArray();
-    if (formData[2].value == ""){
-        formData[2].value = 0;
-    }
     guess = parseInt(formData[2].value);
+    if (formData[2].value == ""){
+        alert("No input");
+        return;
+    }else if(guess !== guess){
+        alert("Wrong input (Please input numbers)");
+        return;
+    }
+    num = HINTBOX.childElementCount;
+    localStorage.setItem("scorez", JSON.stringify(num));
+    scoreBox.innerText = "Current Score: " + num;
     hint = document.createElement("div");
     HINTBOX.insertBefore(hint, HINTBOX.firstChild);
     winCondition(guess, numGuess, num);
+    document.getElementById('input').value='';
 } else {
     alert("You have no number to guess");
 }
