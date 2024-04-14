@@ -14,17 +14,6 @@ let num;
 let time;
 let timeScore = 0;
 
-//loads timer
-if(localStorage.timeStore){
-        timeScore = parseInt(localStorage.timeStore);
-        time = setInterval(function(){
-        timeScore++
-        console.log("dick");
-        localStorage.setItem("timeStore", timeScore);
-        useTime.innerText="Time: |"+timeScore+"|";
-    }, 1000);
-}
-
 //loads pre-existing hints
 if(localStorage.hintz){
     hintzList = JSON.parse(localStorage.hintz);
@@ -50,6 +39,13 @@ if(localStorage.highScore){
 //if a number exists from a previous session, the number will remain the same
 if(localStorage.numHolder){
     numGuess = parseInt(localStorage.numHolder);
+    timeScore = parseInt(localStorage.timeStore);
+        time = setInterval(function(){
+        timeScore++
+        console.log("dick");
+        localStorage.setItem("timeStore", timeScore);
+        useTime.innerText="Time: |"+timeScore+"|";
+    }, 1000);
 }
 
 //loads previous background and font color
