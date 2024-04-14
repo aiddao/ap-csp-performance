@@ -14,6 +14,18 @@ let num;
 let time;
 let timeScore = 0;
 
+//loads timer
+if(localStorage.timeStore){
+        timeScore = parseInt(localStorage.timeStore);
+        time = setInterval(function(){
+        timeScore++
+        console.log("dick");
+        localStorage.setItem("timeStore", timeScore);
+        useTime.innerText="Time: |"+timeScore+"|";
+    }, 1000);
+}
+
+//loads pre-existing hints
 if(localStorage.hintz){
     hintzList = JSON.parse(localStorage.hintz);
     for(i = 0, len = hintzList.length; i < len; i++){
@@ -22,11 +34,14 @@ if(localStorage.hintz){
         HINTBOX.insertBefore(div, HINTBOX.firstChild);
     }
 }
+
+//loads previous score before page closed
 if(localStorage.scorez){
     score = JSON.parse(localStorage.scorez);
     scoreBox.innerHTML = "Previous Score: " + score;
 }
 
+//loads high score
 if(localStorage.highScore){
     highScore = parseInt(JSON.parse(localStorage.highScore));
     high.innerText = highScore;
@@ -37,12 +52,13 @@ if(localStorage.numHolder){
     numGuess = parseInt(localStorage.numHolder);
 }
 
+//loads previous background and font color
 if(localStorage.color){
     let data = JSON.parse(localStorage.color);
-    console.log(data);
     document.body.setAttribute("style", "background-color:" + data[0].value + "; color:" + data[1].value + ";");
 }
 
+//customizes bg color and font color
 function customize(){
     event.preventDefault();
     let formData = $("form").serializeArray();
@@ -50,23 +66,26 @@ function customize(){
     localStorage.setItem("color", JSON.stringify(formData));
 }
 
+//changes game description based on the set range
 let desc = document.getElementById("descriptor");
 desc.innerText = RANGE;
 
-//generates number from 1 to the given range
+//generates number from 1 to the given range and creates timer
 GENBUT.addEventListener("click", function(){
     if(localStorage.numHolder){
         alert("There is already a generated number!!");
     } else {
-    let number=Math.floor(Math.random()* (RANGE - 1) + 1);
-    numGuess = number;
-    localStorage.numHolder = numGuess;
-    alert("Number Generated");
+        time = setInterval(function(){
+            timeScore++
+            console.log("balls");
+            localStorage.setItem("timeStore", timeScore);
+            useTime.innerText="Time: |"+timeScore+"|";
+        }, 1000);
+        let number=Math.floor(Math.random()* (RANGE - 1) + 1);
+        numGuess = number;
+        localStorage.numHolder = numGuess;
+        alert("Number Generated");
     }
-    time = setInterval(function(){
-        timeScore++
-        //console.log(timeScore);
-    }, 1000)
 });
 
 //turns the user's guess into a variable and checks if they won or not
@@ -83,15 +102,15 @@ function userInput(){
         return;
     }
     num = HINTBOX.childElementCount;
-    localStorage.setItem("scorez", JSON.stringify(num));
-    scoreBox.innerText = "Current Score: " + num;
+    localStorage.setItem("scorez", JSON.stringify(num * timeScore));
+    scoreBox.innerText = "Guesses: " + num;
     hint = document.createElement("div");
     HINTBOX.insertBefore(hint, HINTBOX.firstChild);
-    winCondition(guess, numGuess, num);
+    winCondition(guess, numGuess, num, timeScore);
     document.getElementById('input').value='';
-} else {
-    alert("You have no number to guess");
-}
+    } else {
+        alert("You have no number to guess");
+    }
 }
 //checks how far off the guess is from the answer
 function checkCondition(closeMsg, almostMsg, midMsg, wayOffMsg, amtOff){
@@ -116,16 +135,19 @@ function checkGuess(){
     }
 }
 
-function winCondition(userGuess, winValue, curScore){
+//checks if the user won or not
+function winCondition(userGuess, winValue, curScore, tScore){
     if (userGuess == winValue){
-        alert("YOU WIN!!! Answer: "+winValue+" | Score: " + curScore);
+        clearInterval(time);
+        let totalScore = curScore * tScore;
+        alert("YOU WIN!!! Answer: "+winValue+" | Guesses: " + curScore + " | Time: " + tScore + " |Score: " + totalScore);
         localStorage.removeItem("hintz");
         localStorage.removeItem("numHolder");
+        localStorage.removeItem("timeStore");
         if(highScore == ""){
-            highScore = 0;
-            localStorage.setItem("highScore", JSON.stringify(curScore));
+            localStorage.setItem("highScore", JSON.stringify(totalScore));
         }else if(highScore > curScore){
-            localStorage.setItem("highScore", JSON.stringify(curScore));
+            localStorage.setItem("highScore", JSON.stringify(totalScore));
         }
         location.reload();
     }else{
@@ -135,3 +157,4 @@ function winCondition(userGuess, winValue, curScore){
         localStorage.setItem("hintz", JSON.stringify(hintzList));
     }
 }
+
