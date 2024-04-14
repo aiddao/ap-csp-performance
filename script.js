@@ -142,7 +142,7 @@ function winCondition(userGuess, winValue, curScore, tScore){
         localStorage.removeItem("timeStore");
         if(highScore == ""){
             localStorage.setItem("highScore", JSON.stringify(totalScore));
-        }else if(highScore > curScore){
+        }else if(highScore > totalScore){
             localStorage.setItem("highScore", JSON.stringify(totalScore));
         }
         location.reload();
